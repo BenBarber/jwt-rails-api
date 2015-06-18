@@ -9,7 +9,7 @@ This application serves as a starting point or foundation for an API that needs 
 ## Features
 
 * User sign-up
-* User sign-in - authenticate with email and password to obtain an JWT access token
+* User sign-in - authenticate with email and password to obtain a JWT access token
 * User sign-out - expire any existing JWT access tokens
 * Access current_user within your controllers
 * All issued JWT tokens are signed with a unique user signature
