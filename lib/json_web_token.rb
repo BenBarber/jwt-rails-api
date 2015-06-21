@@ -6,17 +6,17 @@ class JsonWebToken
 
       user ||= User.find(decoded_auth_payload[:user_id]) if decoded_auth_payload
 
-      return user if user && decoded_auth_payload[:signiture] &&
+      return user if user && decoded_auth_payload[:signature] &&
                      ActiveSupport::SecurityUtils.secure_compare(
-                       user.token_signiture,
-                       decoded_auth_payload[:signiture])
+                       user.auth_signature,
+                       decoded_auth_payload[:signature])
 
       # Return nil if the user could not be authenticated
       nil
     end
 
     def generate_token(user)
-      token = encode(user_id: user.id, signiture: user.token_signiture)
+      token = encode(user_id: user.id, signature: user.auth_signature)
 
       # Return the generated token
       token

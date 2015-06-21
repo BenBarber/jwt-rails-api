@@ -17,9 +17,10 @@ ActiveRecord::Schema.define(version: 20150610222952) do
     t.string   "name"
     t.string   "email"
     t.string   "password_digest"
-    t.string   "token_signiture"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.string   "auth_signature"
+    t.datetime "auth_signature_created_at"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email"

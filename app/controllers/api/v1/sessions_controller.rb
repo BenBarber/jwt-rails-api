@@ -17,8 +17,7 @@ module Api
       end
 
       def destroy
-        current_user.update_token
-        current_user.save
+        current_user.invalidate_auth_tokens
 
         render json: { message: 'You have been logged out' }
       end
