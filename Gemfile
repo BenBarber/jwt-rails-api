@@ -20,6 +20,7 @@ end
 
 group :test do
   gem 'minitest-reporters'
+  gem 'codeclimate-test-reporter', require: false
 end
 
 # To use ActiveModel has_secure_password
