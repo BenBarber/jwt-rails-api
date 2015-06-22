@@ -27,7 +27,7 @@ module Api
 
       test 'delete#destroy' do
         user = users(:one)
-        jwt = JsonWebToken.generate_token(user)
+        jwt = JsonWebToken.generate_token(user, :auth)
         token = %(Token token="#{jwt}")
         @request.headers['HTTP_AUTHORIZATION'] = token
 

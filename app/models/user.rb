@@ -15,17 +15,16 @@ class User < ActiveRecord::Base
 
   def invalidate_auth_tokens
     generate_signature :auth
-    save
   end
 
   private
 
-  def generate_signature(resource)
+  def generate_signature(sub)
     loop do
-      send "#{resource}_signature=", SecureRandom.urlsafe_base64
-      send "#{resource}_signature_created_at=", Time.zone.now
-      break unless User.find_by("#{resource}_signature",
-                                send("#{resource}_signature"))
+      send "#{sub}_signature=", SecureRandom.urlsafe_base64
+      send "#{sub}_signature_created_at=", Time.zone.now
+      break unless User.find_by("#{sub}_signature",
+                                send("#{sub}_signature"))
     end
   end
 end

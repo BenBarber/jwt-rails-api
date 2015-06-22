@@ -8,7 +8,7 @@ class ApplicationController < ActionController::API
 
   def authenticate_user!
     authenticate_with_http_token do |token, _options|
-      @current_user = JsonWebToken.authenticate(token)
+      @current_user = JsonWebToken.authenticate(token, :auth)
     end
     render_unauthorized unless @current_user
   end
