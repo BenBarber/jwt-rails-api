@@ -1,6 +1,6 @@
 # A stateless Rails API server using JSON Web Tokens for authentication
 
-[![Build Status](https://travis-ci.org/BenBarber/jwt-rails-api.svg?branch=master)](https://travis-ci.org/BenBarber/jwt-rails-api) [![Code Climate](https://codeclimate.com/github/BenBarber/jwt-rails-api/badges/gpa.svg)](https://codeclimate.com/github/BenBarber/jwt-rails-api)
+[![Build Status](https://travis-ci.org/BenBarber/jwt-rails-api.svg?branch=master)](https://travis-ci.org/BenBarber/jwt-rails-api) [![Code Climate](https://codeclimate.com/github/BenBarber/jwt-rails-api/badges/gpa.svg)](https://codeclimate.com/github/BenBarber/jwt-rails-api) [![Test Coverage](https://codeclimate.com/github/BenBarber/jwt-rails-api/badges/coverage.svg)](https://codeclimate.com/github/BenBarber/jwt-rails-api/coverage)
 
 JSON Web Tokens (JWT) are a standardized format for handling authentication between an API and a single page JS application (SPA). 
 
