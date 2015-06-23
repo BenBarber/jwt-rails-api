@@ -4,6 +4,8 @@ gem 'rails', '4.2.1'
 
 gem 'rails-api'
 
+gem 'has_secure_token'
+
 gem 'active_model_serializers', '~> 0.8.3'
 
 gem 'rack-cors', '~> 0.4.0', require: 'rack/cors'

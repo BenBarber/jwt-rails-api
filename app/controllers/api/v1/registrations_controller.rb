@@ -7,7 +7,7 @@ module Api
       def signup
         @user = User.new(signup_params)
         if @user.valid? && @user.save
-          token = JsonWebToken.generate_token(@user, :auth)
+          token = JsonWebToken.generate_token(@user)
 
           render json: { token: token, user_id: @user.id, email: @user.email }
         else

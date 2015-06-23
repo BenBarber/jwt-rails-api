@@ -1,23 +1,23 @@
 # lib/json_web_token.rb
 class JsonWebToken
   class << self
-    def authenticate(token, sub)
+    def authenticate(token, sub = :auth)
       decoded_auth_payload = decode(token, sub)
 
       user ||= User.find(decoded_auth_payload[:user_id]) if decoded_auth_payload
 
       return user if user && decoded_auth_payload[:signature] &&
                      ActiveSupport::SecurityUtils.secure_compare(
-                       user.send("#{sub}_signature"),
+                       user.send("#{sub}_token"),
                        decoded_auth_payload[:signature])
 
       # Return nil if the user could not be authenticated
       nil
     end
 
-    def generate_token(user, sub, exp = 24.hours.from_now)
+    def generate_token(user, sub = :auth, exp = 24.hours.from_now)
       payload = { user_id: user.id,
-                  signature: user.auth_signature,
+                  signature: user.send("#{sub}_token"),
                   sub: sub.to_s,
                   exp: exp.to_i }
 

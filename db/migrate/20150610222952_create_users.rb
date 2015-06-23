@@ -4,8 +4,9 @@ class CreateUsers < ActiveRecord::Migration
       t.string :name
       t.string :email
       t.string :password_digest
-      t.string :auth_signature
-      t.datetime :auth_signature_created_at
+      t.string :auth_token
+      t.string :reset_token
+      t.datetime :reset_token_expires
 
       t.timestamps null: false
 

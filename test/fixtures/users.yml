@@ -4,12 +4,10 @@ one:
   name: User One
   email: one@test.com
   password_digest: <%= default_password_digest %>
-  auth_signature: <%= SecureRandom.urlsafe_base64 %>
-  auth_signature_created_at: <%= Time.now %>
+  auth_token: <%= SecureRandom.urlsafe_base64 %>
 
 two:
   name: User Two
   email: two@test.com
   password_digest: <%= default_password_digest %>
-  auth_signature: <%= SecureRandom.urlsafe_base64 %>
-  auth_signature_created_at: <%= Time.now %>
+  auth_token: <%= SecureRandom.urlsafe_base64 %>
