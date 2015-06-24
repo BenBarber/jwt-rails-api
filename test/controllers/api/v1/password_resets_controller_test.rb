@@ -24,6 +24,49 @@ module Api
           result['errors'],
           'No user was found with that email address')
       end
+
+      test 'POST#reset' do
+        user = users(:one)
+        token = user.generate_jwt_reset_token
+        post :reset, token: token,
+                     user: {
+                       password: default_password,
+                       password_confirmation: default_password
+                     }
+
+        result = JSON.parse(response.body)
+        assert_equal 200, response.status
+        assert_includes result['message'], 'Your password has been reset'
+      end
+
+      test 'POST#reset with passwords not matching' do
+        user = users(:one)
+        token = user.generate_jwt_reset_token
+        post :reset, token: token,
+                     user: {
+                       password: default_password,
+                       password_confirmation: 'invalidPassword'
+                     }
+
+        result = JSON.parse(response.body)
+        assert_equal 422, response.status
+        assert_includes result['errors'],
+                        "Password confirmation doesn't match Password"
+      end
+
+      test 'POST#reset with invalid token' do
+        post :reset, token: 'kejnrgkshen',
+                     user: {
+                       password: default_password,
+                       password_confirmation: default_password
+                     }
+
+        result = JSON.parse(response.body)
+        assert_equal 422, response.status
+        assert_includes(
+          result['errors'],
+          'The reset token provided is either expired or invalid')
+      end
     end
   end
 end

@@ -26,8 +26,9 @@ module Api
           return render json: { message: 'Your password has been reset' }
         end
 
-        errors = @user.errors ||= { response:
-          'The reset token provided is either expired or invalid' }
+        errors = { response:
+            'The reset token provided is either expired or invalid' }
+        errors = @user.errors unless @user.nil?
 
         render_error(errors, 422)
       end
