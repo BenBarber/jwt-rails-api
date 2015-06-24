@@ -9,7 +9,9 @@ module Api
 
         if @user && @user.authenticate(params[:password])
           token = @user.generate_jwt_auth_token
-          return render json: { token: token, user_id: @user.id, email: @user.email }
+          return render json: { token: token,
+                                user_id: @user.id,
+                                email: @user.email }
         end
 
         render_error({ response: 'Invalid email or password' }, 422)

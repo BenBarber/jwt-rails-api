@@ -1,0 +1,9 @@
+<%= yield %>
+
+===============================================
+
+<% if content_for(:footer) %>
+<%= yield(:footer) %>
+<% else %>
+Copyright (c) <%= Time.zone.now.year %> Company name
+<% end %>

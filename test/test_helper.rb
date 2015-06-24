@@ -1,10 +1,14 @@
-require "codeclimate-test-reporter"
-CodeClimate::TestReporter.start
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
 require 'minitest/reporters'
 require 'support/test_password_helper'
+
+if ENV['CODECLIMATE_REPO_TOKEN']
+  require 'codeclimate-test-reporter'
+  # Start the CodeClimate test reporter
+  CodeClimate::TestReporter.start
+end
 
 # Minitest reporter configuration
 reporter_options = { color: true, slow_count: 5 }

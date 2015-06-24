@@ -14,10 +14,14 @@ gem 'jwt', '~> 1.5.0'
 
 gem 'sqlite3'
 
+gem 'premailer-rails'
+gem 'nokogiri'
+
 group :development, :test do
   gem 'faker'
   gem 'spring'
   gem 'rubocop', require: false
+  gem 'byebug'
 end
 
 group :test do
