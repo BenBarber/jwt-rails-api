@@ -6,13 +6,15 @@ module Api
 
       def signup
         @user = User.new(signup_params)
-        if @user.valid? && @user.save
-          token = JsonWebToken.generate_token(@user)
 
-          render json: { token: token, user_id: @user.id, email: @user.email }
-        else
-          render_error(@user.errors, 422)
+        if @user.valid? && @user.save
+          token = @user.generate_jwt_auth_token
+          return render json: { token: token,
+                                user_id: @user.id,
+                                email: @user.email }
         end
+
+        render_error(@user.errors, 422)
       end
 
       private

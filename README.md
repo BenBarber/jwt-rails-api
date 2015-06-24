@@ -11,7 +11,8 @@ This application serves as a starting point or foundation for an API that needs 
 * User sign-up
 * User sign-in - authenticate with email and password to obtain a JWT access token
 * User sign-out - expire any existing JWT access tokens
+* Password reset - validated by token through email
 * Access current_user within your controllers
-* All issued JWT tokens are signed with a unique user signature
+* All issued JWT tokens contain a unique user signature
 
 By signing all tokens with a signature unique to each user this gives you the ability to change the user signature which will then expire any active tokens for that user. You could also change the signature for all users which will then force everyone to be signed out.

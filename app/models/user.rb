@@ -12,4 +12,15 @@ class User < ActiveRecord::Base
   validates :password, presence: true, on: :create
   validates :password_confirmation, presence: true,
                                     if: :password_digest_changed?
+
+  def generate_jwt_auth_token
+    regenerate_auth_token
+    JsonWebToken.generate_token(self, :auth, 24.hours.from_now)
+  end
+
+  def generate_jwt_reset_token
+    update_attributes(reset_token: SecureRandom.base58(24),
+                      reset_token_expires: 24.hours.from_now)
+    JsonWebToken.generate_token(self, :reset, 12.hours.from_now)
+  end
 end

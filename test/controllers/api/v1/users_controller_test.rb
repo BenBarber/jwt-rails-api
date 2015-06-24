@@ -6,7 +6,7 @@ module Api
     class UsersControllerTest < ActionController::TestCase
       test 'get#index' do
         user = users(:one)
-        jwt = JsonWebToken.generate_token(user)
+        jwt = user.generate_jwt_auth_token
         token = %(Token token="#{jwt}")
         @request.headers['HTTP_AUTHORIZATION'] = token
 

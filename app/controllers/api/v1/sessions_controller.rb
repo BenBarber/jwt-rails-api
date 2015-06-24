@@ -8,18 +8,15 @@ module Api
         @user = User.find_by_email(params[:email])
 
         if @user && @user.authenticate(params[:password])
-          token = JsonWebToken.generate_token(@user)
-
-          render json: { token: token, user_id: @user.id, email: @user.email }
-        else
-          render_error({ response: 'Invalid email or password' }, 422)
+          token = @user.generate_jwt_auth_token
+          return render json: { token: token, user_id: @user.id, email: @user.email }
         end
+
+        render_error({ response: 'Invalid email or password' }, 422)
       end
 
       def destroy
         current_user.regenerate_auth_token
-        current_user.save
-
         render json: { message: 'You have been logged out' }
       end
     end
